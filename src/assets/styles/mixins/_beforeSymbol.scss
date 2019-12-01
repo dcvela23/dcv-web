@@ -1,0 +1,16 @@
+@mixin beforeSymbol($width, $height, $top, $right, $bottom, $left , $bg, $radius){
+  content: "";
+  display: inline-block;
+  height: $height;
+  width: $width;
+  position: absolute;
+  left: $left;
+  top: $top;
+  bottom: $bottom;
+  right:$right;
+  background: $bg;
+  border-radius: $radius;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}

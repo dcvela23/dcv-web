@@ -1,0 +1,125 @@
+.grid{
+  display: flex;
+  width:100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  &--column{
+    flex-direction: column;
+  }
+
+  @include gridGutters(0);
+
+  &--full-height{
+    height: 100%;
+  }
+
+
+  &--relative{
+    position: relative;
+  }
+
+  // vertical alignment
+  &--ai-top{ align-items: flex-start}
+  &--ai-middle{ align-items: center}
+  &--ai-bottom{ align-items: flex-end}
+
+  // Horizontal alignment
+  &--jc-top{ justify-content: flex-start}
+  &--jc-middle{ justify-content: center}
+  &--jc-bottom{ justify-content: flex-end}
+  &--jc-between{ justify-content: space-between}
+
+  // vertical alignment
+  &--top{ align-items: flex-start}
+  &--middle{ align-items: center}
+  &--bottom{ align-items: flex-end}
+
+
+  //gutters
+  &--gutters{
+    @include gridGutters($grid-gutters);
+  }
+
+  //cells
+  &__cell{        //default
+    flex: 1;
+    min-width: 0; //Firefox fix
+    box-sizing: border-box;
+
+    &--shrink{
+      flex: 0 1 auto;
+    }
+
+    &--relative{
+      position: relative;
+    }
+  }
+  @for $i from 1 through $grid-cells {
+    &__cell-md-#{$i}{
+      flex: none;
+      width: #{ 100% / $grid-cells * $i};
+    };
+    &__cell-md-0{
+      display: none !important;
+    }
+
+    @include screenMoreThan(md){
+      &__cell-bg-#{$i}{
+        flex: none;
+        width: #{ 100% / $grid-cells * $i} !important;
+      }
+    };
+    @include screenLessThan(md) {
+      &__cell-sm-#{$i}{
+        flex: none;
+        width: #{ 100% / $grid-cells * $i} !important;
+      };
+      &__cell-sm-0{
+        display: none !important;
+      }
+
+      &__cell-sm-or-0{
+        order: 0;
+      }
+
+      &__cell-sm-or-1{
+        order: 1;
+      }
+
+    }
+    @include screenLessThan(sm) {
+      &__cell-xs-#{$i}{
+        flex: none;
+        width: #{ 100% / $grid-cells * $i} !important;
+      };
+      &__cell-xs-0{
+        display: none !important;
+      }
+
+      &__cell-xs-or-0{
+        order: 0;
+      }
+
+      &__cell-xs-or-1{
+        order: 1;
+      }
+    }
+    &__cell-h-md-#{$i}{
+      height: #{ 100% / $grid-cells * $i};
+    }
+  }
+
+  // row
+  &__row{
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    margin: 0;
+    &::after{
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+}

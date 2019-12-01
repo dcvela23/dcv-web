@@ -1,0 +1,32 @@
+.notification {
+  @include pos(fixed, auto, 0, 0, 0);
+  padding: .75rem 0;
+  z-index: 1000;
+  box-shadow: $shadowLight;
+}
+
+#cookies {
+  @include transition([all]);
+  transform: translateY(100%);
+
+  .text {
+    padding-left: 2.25rem;
+
+    @include screenLessThan(md){
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .icon {
+    @include size(1.5rem, 1.5rem);
+    @include pos(absolute, 0, auto, auto, 0);
+    background-image: url('../images/cookies.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &.active {
+    transform: translateY(0%);
+  }
+}

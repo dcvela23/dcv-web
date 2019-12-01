@@ -1,0 +1,52 @@
+// xs = mobile, sm = tablet, md = desktop small, bg = desktop large
+//
+@mixin screenLessThan($size){
+  $max: false;
+
+  @if $size == sm { $max: $screen-xs-max} //mobile
+  @if $size == md { $max: $screen-sm-max} //tablet
+  @if $size == bg { $max: $screen-md-max} //desktop small
+
+  @media (max-width: $max){
+    @content;
+  }
+}
+
+//
+@mixin screenMoreThan($size){
+  $min: false;
+
+  @if $size == xs { $min: $screen-sm-min} //tablet
+  @if $size == sm { $min: $screen-md-min} //desktop small
+  @if $size == md { $min: $screen-bg-min} //desktop large
+
+  @media (min-width: $min){
+    @content;
+  }
+}
+
+//
+@mixin screenSize($size){
+    $min: false;
+    $max: false;
+
+    @if $size == xs {
+      $min: 0;
+      $max: $screen-xs-max;
+    }
+    @if $size == sm {
+      $min: $screen-sm-min;
+      $max: $screen-sm-max;
+    }
+    @if $size == md {
+      $min: $screen-md-min;
+      $max: $screen-md-max;
+    }
+    @if $size == bg {
+      $min: $screen-bg-min;
+      $max: 999999px;
+    }
+    @media (min-width: $min) and (max-width: $max){
+      @content;
+    }
+}

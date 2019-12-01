@@ -1,0 +1,500 @@
+
+#nav{
+  z-index: 10000;
+  @include pos(fixed, 0, auto, auto, 0);
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.07);
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,.07);
+  @include transition([background]);
+
+  nav{
+    height: 4.5rem !important;
+  }
+
+  .navbar {
+
+    &__mobile{
+        display: none;
+    }
+
+    &__links{
+      width: 100%;
+      display: flex;
+
+      > li {
+        position: relative;
+        height: 100%;
+        border-bottom: 0.375rem solid transparent;
+        margin-right: 2.25rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        @include transition([border-bottom]);
+
+        &:last-child,
+        &:nth-last-child(2){
+          margin-right: 0;
+        }
+
+        @include screenMoreThan(sm){
+          &:hover,
+          &.active,
+          &.current-menu-item{
+            border-bottom: 0.375rem solid $black;
+          }
+        }
+
+        a{
+          display: block;
+          top: 50%;
+          transform: translateY(-50%);
+          position: relative;
+
+          @include screenMoreThan(sm) {
+            height: 100%;
+
+            > * {
+              position: relative;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+        }
+
+        &.navbar__buttons{
+
+          @include screenMoreThan(sm){
+            &:hover,
+            &.active{
+              border-bottom: 0.375rem solid transparent;
+            }
+          }
+
+          .button{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
+          p{
+            transform: none;
+            text-transform: none !important;
+            font-size: .875rem;
+            line-height: 1.0625rem;
+          }
+        }
+
+        &.navbar__logo{
+          display: inline-block;
+          width: 22%;
+          margin: 0;
+
+          &:hover,
+          &.active{
+            border-bottom: 0.375rem solid transparent;
+          }
+
+          @include screenMoreThan(sm){
+            flex: 1;
+          }
+
+          .image{
+            height: auto;
+            position: relative;
+
+            @include screenMoreThan(sm){
+              min-width: 8.75rem;
+              margin-left: 0;
+              flex: 1;
+            }
+
+
+            img{
+              height: 2.25rem !important;
+            }
+          }
+        }
+
+        &.wpml-ls-item,
+        &.navbar__dropdown,
+        &.navbar__lang{
+
+          margin-right: 40px;
+
+          @include screenMoreThan(sm){
+            &:hover,
+            &.active{
+
+              ul {
+                max-height: 50vh;
+                transition-duration: 2s;
+              }
+            }
+          }
+
+          > p:first-child{
+            top: 50%;
+            position: relative;
+            transform: translateY(-50%);
+          }
+
+          .icon--arrow-bottom {
+            @include pos(absolute, 53%, -1rem, auto, auto);
+            width: 0.625rem;
+            transform: translateY(-50%);
+            stroke: $black;
+            @include size(0.625rem !important, 0.625rem !important)
+          }
+
+          ul {
+            @include pos(absolute, 4.5rem, auto, auto, 0);
+            background: $white;
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,0.10);
+            min-width: 12.5rem;
+            max-height: 0;
+            overflow: hidden;
+
+            li {
+              width: 100%;
+              border:0;
+
+              a{
+                transform: none;
+                padding: 0.75rem;
+
+                p {
+                  transform: none;
+                  color: $grayDark;
+                  @include useFont('text-small');
+                }
+              }
+
+              @include screenMoreThan(sm){
+                &:hover{
+                  background: $grayLight;
+                  color: $black;
+                }
+              }
+            }
+          }
+        }
+
+        &.navbar__lang {
+          display: flex;
+          justify-content: center;
+          margin-right: 1.25rem;
+          padding-right: 1.25rem;
+
+          &:hover {
+            border-color: transparent;
+          }
+
+          ul {
+            min-width: auto;
+          }
+
+          .icon {
+
+            &.icon--arrow-bottom{
+              right: .3rem;
+            }
+
+            cursor: pointer;
+            @include size(1.5rem, 1.5rem);
+          }
+
+          & > .icon--spanish,
+          & > .icon--english {
+            display: none;
+
+            &.visible {
+              display: inline-block;
+            }
+          }
+
+        }
+
+        //WP lang plugin
+
+        &.wpml-ls-item{
+
+          .wpml-ls-native,
+          .wpml-ls-display{
+            display: none;
+          }
+
+          .wpml-ls-flag{
+            cursor: pointer;
+            @include size(1.5rem, 1.5rem);
+          }
+
+           a {
+            display: inline-block;
+
+            > span {
+              display: flex;
+            }
+          }
+
+          &.wpml-ls-current-language a {
+            position: relative;
+
+            &:before {
+              pointer-events: none;
+              @include transition([all]);
+              transform: translateY(-50%) rotate(180deg);
+              @include beforeSymbol(0.625rem, 0.625rem, 50%, -1rem, 0, auto, url('/assets/icons/arrow-bottomBlack.svg'), 0);
+            }
+          }
+
+          .sub-menu {
+            width: 3rem;
+            min-width: 0;
+
+            li {
+              margin: 0;
+
+              a {
+                &:before {
+                  content: '';
+                  background: transparent;
+                }
+
+                span {
+                  transform: none;
+                }
+
+                @include screenMoreThan(sm) {
+                  img {
+                    padding-left: .75rem;
+                    width: 2.25rem;
+                  }
+                }
+              }
+            }
+          }
+
+          @include screenLessThan(md) {
+
+            .sub-menu{
+              position: static;
+              box-shadow: none;
+              @include transition([all]);
+            }
+          }
+          a {
+            padding-left: 0 !important;
+          }
+
+          &.active {
+            .sub-menu {
+              max-height: 50vh;
+            }
+
+            > a {
+              &:before {
+                transform: translateY(-50%) rotate(0deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  @media (min-width:1030px) and (max-width:1300px) {
+    .navbar__links li{
+      margin-right: 1.5rem;
+    }
+
+    .navbar__logo{
+      margin-right: 1rem !important;
+    }
+  }
+
+  @include screenLessThan(md){
+
+    .navbar__mobile{
+      height: 3rem;
+      display: block;
+      position: relative;
+      width: 100%;
+
+      &__logo{
+        @include pos(absolute, 0, auto, 0, 0);
+        @include size(50%, 100%);
+
+        a, picture {
+          @include size(100%, 100%);
+        }
+
+        picture:last-child{
+          @include pos(absolute, 0, auto, auto, 0);
+          opacity: 0;
+        }
+
+      }
+      &__open,
+      &__close {
+        @include size(1.25rem, 1.25rem);
+        @include pos(absolute, .75rem, 0, auto, auto);
+        * {
+          fill: black;
+        }
+      }
+      &__close{
+          display: none;
+        * {
+          fill: $white;
+        }
+      }
+    }
+
+    nav {
+      height: 100vh !important;
+      position: absolute;
+      left: 100%;
+      @include transition([left]);
+    }
+
+    .navbar__mobile__logo {
+      width: 8.375rem;
+    }
+
+    .navbar__links{
+      width: 100%;
+      height: calc(100vh - 5.8125rem);
+      background: $white;
+      padding: 1.5rem 1.25rem;
+      box-sizing: border-box;
+      overflow: auto;
+      flex-direction: column;
+
+
+      li{
+        float: none;
+        height: auto;
+        display: inline-block;
+
+        &:not(.navbar__buttons){
+          margin-bottom: 1.5rem;
+          border: 0;
+        }
+
+        a {
+          display: inline-block;
+          transform: none;
+          top: 0;
+        }
+
+        p, picture, button {
+          transform: none !important;
+        }
+
+        p {
+          @include useFont('subheadline-medium');
+          text-transform: uppercase;
+          display: inline-block;
+        }
+
+        .icon.icon--arrow-bottom{
+          @include pos(relative !important, auto, auto, 0, auto);
+          transform: none !important;
+        }
+
+        .button {
+          width: 100%;
+          transform: none !important;
+        }
+
+        &.navbar__logo{
+          display: none;
+        }
+
+        &.navbar__buttons{
+          @include pos(fixed, auto, 0, 0, 0);
+          width:100%;
+          border: 0;
+          left:100%;
+
+          a, button {
+            width: 100%;
+            transform: none;
+          }
+        }
+
+        &.navbar__dropdown{
+
+          .sub-menu{
+            box-shadow: none;
+            position: relative !important;
+            top: 0;
+
+            li {
+              margin-bottom: 0;
+              padding-bottom: 0;
+
+              p {
+                font-size: 1rem;
+                line-height: 1.3125rem;
+              }
+            }
+          }
+
+          .icon {
+            @include transition([transform]);
+            transform-origin: center;
+          }
+
+
+
+          &.active{
+            .sub-menu {
+              max-height: 50vh;
+              transition-duration: 2s;
+            }
+
+            .icon--arrow-bottom{
+              transform: translateY(-50%) rotate(180deg) !important;
+            }
+          }
+        }
+      }
+    }
+
+    &.opened{
+      background: $black;
+
+      .navbar__mobile__logo picture{
+        &:first-child{ opacity: 0 }
+        &:last-child{ opacity: 1 }
+      }
+
+      .navbar__mobile__close{
+        display: block;
+      }
+      .navbar__mobile__open{
+        display: none;
+      }
+
+      nav,
+      .navbar__buttons{
+        left: 0 !important;
+      }
+
+    }
+  }
+}
+
+@include screenLessThan(md) {
+  .navbar__lang .icon--arrow-bottom {
+    position: absolute !important;
+    right: auto;
+    left: 2.5rem !important;
+    top: -1rem !important;
+    bottom: auto !important;
+  }
+}

@@ -1,0 +1,38 @@
+@function getBtnType($btnType, $prop){
+  @return map-get(map-get($btnSet, $btnType), $prop);
+}
+
+@mixin useBtn($btnType) {
+  transition: all $transition-time-fast linear;
+  color: getBtnType($btnType, color);
+  padding: getBtnType($btnType, padding);
+  background-color: getBtnType($btnType, background-color);
+  border: getBtnType($btnType, border);
+  border-radius: getBtnType($btnType, border-radius);
+  box-shadow: getBtnType($btnType, box-shadow);
+  width: getBtnType($btnType, width);
+  display: getBtnType($btnType, display);
+  cursor: pointer;
+  box-sizing: border-box;
+  justify-content: space-between;
+
+  .paragraph{
+    @include useFont(getBtnType($btnType, type));
+  }
+
+  &:hover,
+  .active{
+    color: getBtnType($btnType, color-hover);
+    background-color: getBtnType($btnType, background-color-hover);
+    border: getBtnType($btnType, border-hover);
+    border-radius: getBtnType($btnType, border-radius-hover);
+    box-shadow: getBtnType($btnType, box-shadow-hover);
+
+    .paragraph{
+      @include useFont(getBtnType($btnType, type-hover))
+    }
+  }
+  &:focus{
+    outline: none;
+  }
+}

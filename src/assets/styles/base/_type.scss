@@ -1,0 +1,66 @@
+p, span, div{
+  font-family: $truenoLight;
+}
+
+p a {
+    text-decoration: underline;
+}
+
+strong {
+    font-family: $truenoBold;
+}
+
+  
+// trueno extrabold
+@font-face {
+    font-family: 'trueno_extrabold';
+    src: url('@~fonts/trueno_extrabold/truenoexbd-webfont.eot');
+    src: url('@~fonts/trueno_extrabold/truenoexbd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@~fonts/trueno_extrabold/truenoexbd-webfont.woff2') format('woff2'),
+         url('@~fonts/trueno_extrabold/truenoexbd-webfont.woff') format('woff'),
+         url('@~fonts/trueno_extrabold/truenoexbd-webfont.ttf') format('truetype'),
+         url('@~fonts/trueno_extrabold/truenoexbd-webfont.svg#fs_lolaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+// trueno bold
+@font-face {
+    font-family: 'trueno_bold';
+    src: url('@~fonts/trueno_bold/truenobd-webfont.eot');
+    src: url('@~fonts/trueno_bold/truenobd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@~fonts/trueno_bold/truenobd-webfont.woff2') format('woff2'),
+         url('@~fonts/trueno_bold/truenobd-webfont.woff') format('woff'),
+         url('@~fonts/trueno_bold/truenobd-webfont.ttf') format('truetype'),
+         url('@~fonts/trueno_bold/truenobd-webfont.svg#fs_lolaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// trueno light
+@font-face {
+    font-family: 'trueno_light';
+    src: url('@~fonts/trueno_light/truenolt-webfont.eot');
+    src: url('@~fonts/trueno_light/truenolt-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@~fonts/trueno_light/truenolt-webfont.woff2') format('woff2'),
+         url('@~fonts/trueno_light/truenolt-webfont.woff') format('woff'),
+         url('@~fonts/trueno_light/truenolt-webfont.ttf') format('truetype'),
+         url('@~fonts/trueno_light/truenolt-webfont.svg#fs_lolaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// trueno ultraLight
+@font-face {
+    font-family: 'trueno_ultraLight';
+    src: url('@~fonts/trueno_ultraLight/truenoultlt-webfont.eot');
+    src: url('@~fonts/trueno_ultraLight/truenoultlt-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@~fonts/trueno_ultraLight/truenoultlt-webfont.woff2') format('woff2'),
+         url('@~fonts/trueno_ultraLight/truenoultlt-webfont.woff') format('woff'),
+         url('@~fonts/trueno_ultraLight/truenoultlt-webfont.ttf') format('truetype'),
+         url('@~fonts/trueno_ultraLight/truenoultlt-webfont.svg#fs_lolaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

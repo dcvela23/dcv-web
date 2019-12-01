@@ -1,0 +1,133 @@
+#footer {
+  padding: 2.875rem 0 3rem;
+
+  .footer__logo{
+    a{
+      display: inline-block;
+    }
+    
+    picture{
+      display: inline-block;
+      img{
+        height: 3rem !important;
+      }
+    }
+  }
+
+  .footer__rrss {
+    .list--brands{
+      li {
+        margin-right: 0.5rem;
+  
+        a{
+          display: inline-block;
+          @include transition([all]);
+  
+          @include screenMoreThan(md){
+            &:hover{
+              opacity: .5;
+            }
+          }
+        }
+  
+        picture{
+          @include size(1.5rem !important, 1.5rem !important)
+        }
+      }
+    }
+  }
+
+  .footer__partners{
+    .list{
+      margin-bottom: -1.5rem;
+
+      &__item {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    a {
+      display: inline-block;
+    }
+
+    picture{
+      @include size(auto !important, auto !important);
+
+      img {
+        @include size(auto!important, 3.75rem !important);
+      }
+    }
+  }
+
+
+  .footer__links{
+    .menu-item {
+      display: inline-block;
+      width:100%;
+
+      a {
+        display: block;
+        margin-bottom: .75rem;
+
+        &:last-child{
+          margin-right: 0;
+        }
+
+        p {
+          display: inline-block;
+          border-bottom: 0.0625rem solid transparent;
+          padding-bottom: .5rem;
+          @include transition([all]);
+        }
+
+        @include screenMoreThan(md){
+          &:hover{
+            p{
+              border-color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include screenLessThan(sm){
+      picture{
+        margin-bottom: 0;
+
+        img{
+          max-width: 70%;
+        }
+      }
+
+      .footer__rrss {
+        margin-top: 1rem;
+      }
+
+
+      .footer__partners {
+        margin-bottom: 3.5rem;
+
+        .list {
+          &__item {
+            margin-bottom: 1rem;
+
+            picture img{
+              max-width: 100%;
+              height: 2rem !important;
+            }
+          }
+        }
+      }
+
+      .footer__links:last-child {
+        .menu-item{
+          width: 50%;
+
+          &:last-child{
+            float: right;
+          }
+        }
+      }
+    }
+  }

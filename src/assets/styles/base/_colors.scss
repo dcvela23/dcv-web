@@ -1,0 +1,15 @@
+*{
+  @each $key, $value in $colorSet {
+    &.#{$key}{
+      color: $value;
+    };
+    &.bg-#{$key}{
+      background-color: $value;
+    };
+  }
+  @each $key, $value in $gradientSet {
+    &.bg-#{$key}{
+      background-image: linear-gradient($value);
+    };
+  }
+}

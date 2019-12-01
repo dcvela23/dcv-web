@@ -1,0 +1,70 @@
+//hide elements
+@mixin hiddenUntil($size){
+  @include screenLessThan($size){
+    display: none !important;
+  }
+}
+
+@mixin visibleUntil($size){
+  @include screenMoreThan($size){
+    display: none !important;
+  }
+}
+
+//size
+
+@mixin size($width, $height, $color: transparent, $float: none){
+  display: inline-block;
+  box-sizing: border-box;
+  width: $width;
+  height: $height;
+  background-color: $color;
+  float: $float;
+}
+
+//position
+@mixin pos($position, $top, $right, $bottom, $left){
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+
+//background
+
+@mixin bgContain(){
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin bgCover(){
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+//clearfix
+@mixin clearfix(){
+  &::after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+//hover
+@mixin hover(){
+  @include whenNoTouch{
+    &:hover{
+      @content;
+    }
+  }
+}
+
+//device
+@mixin whenPrinted {@media print { @content; }};
+@mixin whenScreen {@media screen { @content; }};
+@mixin whenNoTouch { html.no-touch & { @content } }

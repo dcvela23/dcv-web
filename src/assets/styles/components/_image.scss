@@ -1,0 +1,54 @@
+.image{
+  @include size(100%, 100%);
+  overflow: hidden;
+  display: inline-block;
+
+  &--hAuto{
+    @include size(auto, auto);
+    img{
+      width: auto !important;
+      height: auto;
+    }
+  }
+
+  &--center{
+    display: table;
+    margin: 0 auto;
+  }
+
+  &--cover{
+    .image__img{
+      &:last-child{
+        @include size(100%, 100%);
+      }
+      display: block!important;
+      object-fit: cover
+    }
+    //moderniz callback
+    &.image--compat-object-fit{
+      background-size: cover;
+      background-position: center center;
+      .image__img{
+        opacity: 0;
+      }
+    }
+  }
+  &--contain{
+    .image__img{
+      &:last-child{
+        @include size(100%, 100%);
+      }
+      display: block!important;
+      object-fit: contain;
+    }
+    //moderniz callback
+    &.image--compat-object-fit{
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      .image__img{
+        opacity: 0;
+      }
+    }
+  }
+}

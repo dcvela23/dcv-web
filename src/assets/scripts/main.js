@@ -1,0 +1,47 @@
+import navbar from './modules/navbar.js';
+import objectFitFallback from './modules/objectFitFallback';
+import { checkIE } from './utils/browsers.js'
+import { forEachPolyfill, arrayFromIE, startsWithPolyfill } from './utils/polyfill'
+import { addClass } from './utils/classes.js';
+import { debounce } from './utils/debounce.js';
+import  './lib/modernzr.js';
+
+
+// trigger CustomizeSelect just one time
+var selectCustomized = false;
+
+
+function initEvents() {
+  forEachPolyfill();
+  arrayFromIE();
+  startsWithPolyfill();
+
+  if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) ) {
+    addClass(document.querySelector('body'), 'ie')
+  }
+
+
+  //navbar
+  //
+  //var NavbarInit = new navbar(document.querySelector("#nav"));
+
+}
+
+(function() {
+  initEvents()
+})()
+
+// handle resize
+
+var resetScript = debounce(function() {
+  //
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    initEvents()
+  } else {
+    initEvents()
+  }
+}, 250);
+
+
+
+window.addEventListener('resize', resetScript);

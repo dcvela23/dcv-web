@@ -1,0 +1,22 @@
+@function getType($type, $prop){
+  @return map-get(map-get($typeSet, $type), $prop)
+};
+
+@mixin useFont($type){
+  font-family: getType($type, font-family);
+  font-size: getType($type, font-size);
+  line-height: getType($type, line-height);
+  letter-spacing: getType($type, letter-spacing);
+  font-weight: getType($type, font-weight);
+  text-transform: getType($type, text-transform);
+  @include screenLessThan(md){
+    font-size: getType($type, font-size-sm);
+    line-height: getType($type, line-height-sm);
+    letter-spacing: getType($type, letter-spacing-sm);
+  }
+  @include screenLessThan(sm){
+    font-size: getType($type, font-size-xs);
+    line-height: getType($type, line-height-xs);
+    letter-spacing: getType($type, letter-spacing-xs);
+  }
+}

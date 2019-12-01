@@ -1,0 +1,53 @@
+
+.button{
+  display: inline-block;
+
+   * {
+    transition:  none;
+  }
+
+  @each $key, $value in $btnSet {
+    &--#{$key}{
+      @include useBtn($key)
+    };
+  };
+
+  @each $key, $value in $typeSet {
+    &.#{$key}{
+      .paragraph{
+        @include useFont($key);
+      }
+    }
+  };
+
+  .paragraph{
+    text-transform: uppercase !important;
+  }
+
+  &.center{
+    display: table;
+    margin: 0 auto;
+  }
+
+  &.white{
+    *{
+      color: $white;
+    }
+  }
+
+  @each $key, $value in $colorSet {
+    &--#{$key}{
+      background-color: $value;
+      border-color: $value;
+    };
+  }
+
+  @include screenLessThan(sm){
+    width: 100%;
+
+    button, p{
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

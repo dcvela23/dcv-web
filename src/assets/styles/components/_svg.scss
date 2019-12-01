@@ -1,0 +1,150 @@
+.svg{
+  &__item{
+    display: none;
+
+    .text--subheadline-medium{
+      text-transform: uppercase
+    }
+  }
+
+
+  &__group{
+    cursor: pointer;
+
+    rect {
+      fill: transparent;
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  @include screenSize(sm){
+    .svg__item__info{
+      width: calc(100vw - 6rem);
+      position: relative;
+      z-index: 1;
+
+      .description__text > .mg {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @include screenLessThan(md){
+    &--onHover{
+      svg {
+          margin-bottom: 3rem;
+      }
+    }
+
+    &__item{
+      display: inline-block;
+      margin-bottom: 0.1875rem;
+      transition: .2s all linear;
+
+      * {
+        @include transition([all]);
+        transition-duration: $transition-time-slow;
+      }
+
+      .svg__item__info > .pd{
+        padding: 0;
+        position: relative;
+
+        .text--subheadline-medium,
+        .text--subheadline-large {
+          padding: .75rem;
+        }
+
+        .icon{
+          display: inline-block;
+          @include size(1rem, 1rem);
+          @include pos(absolute, .75rem, .75rem, auto, auto);
+          margin-bottom: 0;
+          stroke: $black;
+        }
+      }
+
+      .description{
+        background: $white;
+      }
+
+      .description__text,
+      .wp-editor{
+        max-height: 0;
+        margin-top: 0 !important;
+        overflow: hidden;
+        margin-bottom: -.75rem;
+        padding-left: .75rem;
+        padding-right: .75rem;
+
+        & + .mg--t-5{
+          max-height: 0;
+          margin-top: 0 !important;
+          overflow: hidden;
+          @include transition([all]);
+          padding: 0 .75rem;
+        }
+
+        > .mg--t-3{
+          margin-top: 0;
+        }
+      }
+
+      .text--subheadline-large{
+        font-size: .75rem !important;
+        line-height: 0.9375rem !important;
+        padding-right: 2rem !important;
+        box-sizing: border-box;
+        color: $black;
+        background: $grayLight;
+      }
+
+      .text--text-large{
+        color: $grayDark;
+        padding-top: .75rem;
+      }
+
+      .image {
+        display: none;
+      }
+
+      &.open{
+        background: white;
+
+        .text--subheadline-medium,
+        .text--subheadline-large {
+          color: $white;
+        }
+
+        .icon{
+          transform:rotate(180deg);
+          stroke: $white !important;
+        }
+
+
+        .description__text,
+        .wp-editor{
+          max-height: 1000px;
+          margin-bottom: 1rem;
+
+          & + .mg--t-5{
+            max-height: 100vh;
+            margin-bottom: 1rem;
+            }
+        }
+      }
+    }
+  }
+}
+
+.svg__item__wrapper{
+  @include screenMoreThan(sm){
+    .icon{
+      display: none !important;
+    }
+  }
+}

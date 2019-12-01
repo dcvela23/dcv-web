@@ -1,0 +1,17 @@
+//
+@function buildTransition($properties, $speed, $easing, $delay){
+  $transitions: ();
+  @each $property in $properties{
+    $transitions:
+      append(
+        $transitions,
+        $property $speed $easing $delay,
+        comma )
+  }
+  @return $transitions;
+}
+
+//
+@mixin transition($properties, $speed: $transition-time-base, $easing: $transition-func,  $delay: 0ms){
+  transition: buildTransition($properties, $speed, $easing, $delay);
+}

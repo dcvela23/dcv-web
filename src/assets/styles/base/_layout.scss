@@ -1,0 +1,101 @@
+//
+html,
+body{
+  box-sizing: border-box;
+  height: 100%;
+}
+
+//section
+
+.section{
+  position: relative;
+  width: 100%;
+  display: block;
+
+  &__wrapper{
+    max-width: $container-app-maxWidth;
+    margin: 0 auto;
+
+    @media (max-width: 1280px){
+      padding: 0 3rem;
+    }
+
+    @include screenLessThan(sm){
+      max-width: calc(100% - 2.5rem);
+      padding: 0 0rem;
+    }
+  }
+}
+
+// aligns
+.left{
+  text-align:left;
+
+  * {
+    text-align:left;
+  }
+}
+.center{
+  text-align:center;
+
+  * {
+    text-align:center;
+  }
+}
+.right{
+  text-align:right;
+
+  * {
+    text-align:right;
+  }
+}
+
+//container
+
+.container{
+  display: table;
+  margin: 0 auto;
+
+  &--small{
+    max-width: $container-small-maxWidth;
+  }
+
+}
+
+// app
+html,
+body,
+#app{
+    height:100%;
+    width: 100%;
+}
+
+body{
+  background: $white;
+}
+
+.svg-icon__sprite{
+  display: none;
+}
+
+.main{
+  overflow: hidden;
+  padding-top: 4.5rem;
+  .main__wrapper{
+    background: $white;
+    margin: 0 auto;
+  }
+
+  @include screenLessThan(md){
+    padding-top: 3rem;
+  }
+}
+
+
+// pos
+
+.pos{
+  &__tr{
+    @include pos(absolute, 0, 0, auto, auto);
+  }
+}
