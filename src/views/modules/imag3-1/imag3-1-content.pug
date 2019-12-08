@@ -1,2 +1,13 @@
-section.section.section--viewport
+include ./../../mixins/image
+
+-var data = $texts.IMAG3_1
+
+section.section.section--viewport#imag3-1
+  .grid.grid--column.grid--jc-middle.grid--ai-middle.grid--full-height
+    ul
+      for item in data.items
+        li 
+          p.blueDark.headline-medium= item.title
+          +image(item.path, 'cover')
+
       

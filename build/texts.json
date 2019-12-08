@@ -3,6 +3,30 @@
 
   },
   "FOOTER": {
-		
-  }
+
+  },
+	"IMAG3_1": {
+		"items": [
+			{
+				"title": "Serendipia",
+				"path" : "/assets/images/image3-1/image1.jpg"
+			},
+			{
+				"title": "Forecast",
+				"path" : "/assets/images/image3-1/image2.jpg"
+			},
+			{
+				"title": "Neverland",
+				"path" : "/assets/images/image3-1/image3.jpg"
+			},
+			{
+				"title": "Tripviewer",
+				"path" : "/assets/images/image3-1/image4.jpg"
+			},
+			{
+				"title": "oneOfUs",
+				"path" : "/assets/images/image3-1/image5.jpg"
+			}
+		]
+	}
 }

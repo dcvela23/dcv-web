@@ -1,0 +1,9 @@
+mixin image(content, fit)
+  picture(class="image image--"+ fit)
+    if content.imageSet
+      source(class="image__img" srcset='' + content.imageSet.urlDesktopLarge + ' 3039w, ' + content.imageSet.urlDesktopLarge2x + ' 6078w', media='(min-width: 1499px)')
+      source(class="image__img" srcset='' + content.imageSet.urlDesktop + ' 1499w, ' + content.imageSet.urlDesktop2x + ' 2998w', media='(min-width: 1023px)')
+      source(class="image__img" srcset='' + content.imageSet.urlTablet + ' 1023w, ' + content.imageSet.urlTablet2x + ' 2046w', media='(min-width: 767px)')
+      img(class="image__img" srcset='' + content.imageSet.urlMobile + ' 767w, ' + content.imageSet.urlMobile2x + ' 1534w')
+    else
+      img(class="image__img" src=content)

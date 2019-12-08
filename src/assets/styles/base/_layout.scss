@@ -81,14 +81,6 @@ body,
 
 .main{
   overflow: hidden;
-  padding-top: 4.5rem;
-  .main__wrapper{
-    margin: 0 auto;
-  }
-
-  @include screenLessThan(md){
-    padding-top: 3rem;
-  }
 }
 
 
