@@ -1,47 +1,17 @@
 //---- Families
-$truenoBold: 'trueno_bold', sans-serif;
-$truenoExtraBold: 'trueno_extrabold', sans-serif;
-$truenoLight: 'trueno_light', sans-serif;
-$truenoUltraLight: 'trueno_ultraLight', sans-serif;
+$quattrocento: 'quattrocento', sans-serif;
+$frank: 'frank', sans-serif;
 
 //---- Types
 
 $typeSet:(
   //headline
-  headline-xLarge:(
-    font-family: $truenoBold,
-    font-size: 2.5rem,
-    line-height: 3.125rem,
-    letter-spacing: 0.625rem,
-    font-weight: 300,
-    text-transform: none,
-    font-size-sm: 2.5rem,
-    line-height-sm: 3.125rem,
-    letter-spacing-sm: 0.625rem,
-    font-size-xs: 2.5rem,
-    line-height-xs: 3.125rem,
-    letter-spacing-xs: 0.625rem
-  ),
-  headline-large:(
-    font-family: $truenoUltraLight,
-    font-size: 1.5rem,
-    line-height: 1.8125rem,
-    letter-spacing: initial,
-    font-weight: 100,
-    text-transform: none,
-    font-size-sm: 1.5rem,
-    line-height-sm: 1.8125rem,
-    letter-spacing-sm: initial,
-    font-size-xs: 1.5rem,
-    line-height-xs: 1.8125rem,
-    letter-spacing-xs: initial
-  ),
   headline-medium:(
-    font-family: $truenoUltraLight,
+    font-family: $frank,
     font-size: 1.5rem,
     line-height: 1.8125rem,
     letter-spacing: initial,
-    font-weight: 100,
+    font-weight: 600,
     text-transform: none,
     font-size-sm: 1.5rem,
     line-height-sm: 1.8125rem,
@@ -49,81 +19,10 @@ $typeSet:(
     font-size-xs: 1.5rem,
     line-height-xs: 1.8125rem,
     letter-spacing-xs: initial
-  ),
-  headline-small:(
-    font-family: $truenoUltraLight,
-    font-size: 1.5rem,
-    line-height: 1.8125rem,
-    letter-spacing: initial,
-    font-weight: 100,
-    text-transform: none,
-    font-size-sm: 1.5rem,
-    line-height-sm: 1.8125rem,
-    letter-spacing-sm: initial,
-    font-size-xs: 1.5rem,
-    line-height-xs: 1.8125rem,
-    letter-spacing-xs: initial
-  ),
-  //subheadline
-  subheadline-large:(
-    font-family: $truenoExtraBold,
-    font-size: 1rem,
-    line-height: 1.1875rem,
-    letter-spacing: 0.625rem,
-    font-weight: initial,
-    text-transform: none,
-    font-size-sm: 1rem,
-    line-height-sm: 1.5rem,
-    letter-spacing-sm: 0.375rem,
-    font-size-xs: 1rem,
-    line-height-xs: 1.5rem,
-    letter-spacing-xs: 0.375rem
-  ),
-  subheadline-medium:(
-    font-family: $truenoExtraBold,
-    font-size: 1rem,
-    line-height: 1.1875rem,
-    letter-spacing: 0.375rem,
-    font-weight: initial,
-    text-transform: none,
-    font-size-sm: 0.75rem,
-    line-height-sm: 0.9375rem,
-    letter-spacing-sm: 0.375rem,
-    font-size-xs: 0.75rem,
-    line-height-xs: 0.9375rem,
-    letter-spacing-xs: 0.375rem
-  ),
-  subheadline-small:(
-    font-family: $truenoExtraBold,
-    font-size: 0.75rem,
-    line-height: 0.9375rem,
-    letter-spacing: 0.375rem,
-    font-weight: auto,
-    text-transform: none,
-    font-size-sm: 0.75rem,
-    line-height-sm: 0.9375rem,
-    letter-spacing-sm: 0.375rem,
-    font-size-xs: 0.75rem,
-    line-height-xs: 0.9375rem,
-    letter-spacing-xs: 0.375rem
   ),
   //text
-  text-large:(
-    font-family: $truenoLight,
-    font-size: 1rem,
-    line-height: 1.1875rem,
-    letter-spacing: initial,
-    font-weight: 300,
-    text-transform: none,
-    font-size-sm: 1rem,
-    line-height-sm: 1.1875rem,
-    letter-spacing-sm: initial,
-    font-size-xs: 1rem,
-    line-height-xs: 1.1875rem,
-    letter-spacing-xs: initial
-  ),
   text-medium:(
-    font-family: $truenoLight,
+    font-family: $quattrocento,
     font-size: 0.875rem,
     line-height: 1.0625rem,
     letter-spacing: initial,
@@ -134,49 +33,6 @@ $typeSet:(
     letter-spacing-sm: initial,
     font-size-xs: 0.875rem,
     line-height-xs: 1.25rem,
-    letter-spacing-xs: initial
-  ),
-  text-small:(
-    font-family: $truenoLight,
-    font-size: 0.75rem,
-    line-height: 1rem,
-    letter-spacing: initial,
-    font-weight: 300,
-    text-transform: none,
-    font-size-sm: 0.75rem,
-    line-height-sm: 1rem,
-    letter-spacing-sm: initial,
-    font-size-xs: 0.75rem,
-    line-height-xs: 1rem,
-    letter-spacing-xs: initial
-  ),
-  text-bold-medium:(
-    font-family: $truenoBold,
-    font-size: 1rem,
-    line-height: 1.3125rem,
-    letter-spacing: initial,
-    font-weight: 700,
-    text-transform: none,
-    font-size-sm: 0.875rem,
-    line-height-sm: 1.25rem,
-    letter-spacing-sm: initial,
-    font-size-xs: 0.875rem,
-    line-height-xs: 1.25rem,
-    letter-spacing-xs: initial
-  ),
-  //
-  number-medium:(
-    font-family: $truenoExtraBold,
-    font-size: 4.5rem,
-    line-height: 3.5rem,
-    letter-spacing: initial,
-    font-weight: 700,
-    text-transform: none,
-    font-size-sm: 3rem,
-    line-height-sm: 3.625rem,
-    letter-spacing-sm: initial,
-    font-size-xs: 3rem,
-    line-height-xs: 3.625rem,
     letter-spacing-xs: initial
   )
 )

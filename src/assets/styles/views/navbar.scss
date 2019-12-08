@@ -167,7 +167,6 @@
                 p {
                   transform: none;
                   color: $grayDark;
-                  @include useFont('text-small');
                 }
               }
 
@@ -395,7 +394,6 @@
         }
 
         p {
-          @include useFont('subheadline-medium');
           text-transform: uppercase;
           display: inline-block;
         }
