@@ -1,43 +1,24 @@
 $white: #FFFFFF;
 $black: #12212B;
-$gray: #E6E7E8;
-$grayDark: #717A80;
-$grayLight: #F3F4F4;
 //
-$green: #88CC33;
-$greenDark: #55BA92;
-$greenLight: #C3C31A;
-$blue: #22A7F0;
-$blueLight: #38A1DA;
-$blueDark: #5A72BC;
-$purple: #913D88;
-$red: #F22613;
-$redDark: #C2324E;
-$orange: #F9710A;
-$yellow: #FFBB00;
+$cream: #fffcf2;
+$purple: #9a87bb;
+$blue: #194673;
+$blueLight: #406a9d;
+$blueDark: #002642;
 //
-$mainGradient:-223deg, #F3474F 2%, #E54472 52%;
 
 //
 $colorSet: (
   white: $white,
   black: $black,
-  gray: $gray,
-  grayDark: $grayDark,
-  grayLight: $grayLight,
-  green: $green,
-  greenDark: $greenDark,
-  greenLight: $greenLight,
   blueLight: $blueLight,
   blue: $blue,
   blueDark: $blueDark,
   purple: $purple,
-  red: $red,
-  redDark: $redDark,
-  orange: $orange,
-  yellow: $yellow
+  cream: $cream,
 );
 
 $gradientSet: (
-  mainGradient: $mainGradient
+
 )

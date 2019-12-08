@@ -3,6 +3,7 @@ html,
 body{
   box-sizing: border-box;
   height: 100%;
+  background: $cream;
 }
 
 //section
@@ -24,6 +25,10 @@ body{
       max-width: calc(100% - 2.5rem);
       padding: 0 0rem;
     }
+  }
+
+  &--viewport {
+    height: 100vh;
   }
 }
 
@@ -70,10 +75,6 @@ body,
     width: 100%;
 }
 
-body{
-  background: $white;
-}
-
 .svg-icon__sprite{
   display: none;
 }
@@ -82,7 +83,6 @@ body{
   overflow: hidden;
   padding-top: 4.5rem;
   .main__wrapper{
-    background: $white;
     margin: 0 auto;
   }
 

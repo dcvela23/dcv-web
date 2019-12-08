@@ -166,13 +166,13 @@
 
                 p {
                   transform: none;
-                  color: $grayDark;
+                  color: $blueDark;
                 }
               }
 
               @include screenMoreThan(sm){
                 &:hover{
-                  background: $grayLight;
+                  background: $blueDark;
                   color: $black;
                 }
               }
