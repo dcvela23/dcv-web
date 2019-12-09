@@ -1,10 +1,14 @@
 import navbar from './modules/navbar.js';
 import objectFitFallback from './modules/objectFitFallback';
+//
+import Image3_1 from './modules/image3-1.js';
+//
 import { checkIE } from './utils/browsers.js'
 import { forEachPolyfill, arrayFromIE, startsWithPolyfill } from './utils/polyfill'
 import { addClass } from './utils/classes.js';
 import { debounce } from './utils/debounce.js';
 import  './lib/modernzr.js';
+import  './lib/three.js';
 
 
 // trigger CustomizeSelect just one time
@@ -24,6 +28,10 @@ function initEvents() {
   //navbar
   //
   //var NavbarInit = new navbar(document.querySelector("#nav"));
+
+  //image3-1
+  //
+  var Image3_1Init = new Image3_1(document.querySelector("#imag3-1"));
 
 }
 

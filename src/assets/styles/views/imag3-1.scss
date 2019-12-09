@@ -1,18 +1,30 @@
 
 #imag3-1 {
-  ul {
-    li {
-      + li {
-        margin-top: 4vh;
-      }
+  > .grid {
+    position: relative;
+    z-index: 1;
+    
+    ul {
+      li {
+        + li {
+          margin-top: 4vh;
+        }
 
-      picture {
-        display: none;
-      }
+        picture {
+          display: none;
+        }
 
-      p {
-        text-align: center;
+        p {
+          text-align: center;
+        }
       }
     }
+  }
+
+
+  canvas {
+    @include pos(absolute, 0, auto, auto, 0);
+    z-index: 0;
+    pointer-events: none;
   }
 }

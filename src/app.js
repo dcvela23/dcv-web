@@ -5,6 +5,5 @@ import 'styles/_app.scss';
 import 'scripts/import-icons';
 
 $(document).ready(() => {
-  console.log('Ready!');
   require('scripts/main');
 });
