@@ -16,6 +16,8 @@ class Image3_1 {
     })
     // create geomtetry with material and shader
     options.strength = options.strengh || 0.25
+    options.amount = options.amount || 5
+    options.duration = options.duration || 0.5
     this.options = options
     this.init()
     // add events and interactions: texture, position, opacity distorsion
@@ -191,8 +193,20 @@ class Image3_1 {
      `,
      transparent: true
     })
+
     this.plane = new THREE.Mesh(this.geometry, this.material)
-    this.scene.add(this.plane)
+
+    // only one plane
+    //this.scene.add(this.plane)
+
+    // several plane
+    this.trails = []
+    for (let i = 0; i < this.options.amount; i++) {
+      let plane = this.plane.clone()
+      this.trails.push(plane)
+      this.scene.add(plane)
+    }
+
   }
 
   // create the events: update texture, position, opacity and distorsion
@@ -254,7 +268,14 @@ class Image3_1 {
     let imageRatio = this.currentItem.img.naturalWidth / this.currentItem.img.naturalHeight
     // scale plane to fit image dimensions
     this.scale = new THREE.Vector3(imageRatio, 1, 1)
-    this.plane.scale.copy(this.scale)
+
+    // only one plane
+    //this.plane.scale.copy(this.scale)
+
+    // several planes
+    this.trails.forEach( trail => {
+      trail.scale.copy(this.scale)
+    })
   }
 
   // update position
@@ -309,6 +330,17 @@ class Image3_1 {
       y: y,
       ease: Power4.easeOut,
       onUpdate: this.onPositionUpdate.bind(this)
+    })
+
+    // set a delay to plane copies
+    this.trails.forEach((trail, index) => {
+      let duration =
+        this.options.duration * this.options.amount - this.options.duration * index
+        TweenLite.to(trail.position, duration, {
+          x: x,
+          y: y,
+          ease: Power4.easeOut
+        })
     })
   }
 

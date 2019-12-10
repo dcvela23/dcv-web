@@ -3,11 +3,11 @@
   > .grid {
     position: relative;
     z-index: 1;
-    
+
     ul {
       li {
         + li {
-          margin-top: 4vh;
+          margin-top: 8vh;
         }
 
         picture {
@@ -16,6 +16,7 @@
 
         p {
           text-align: center;
+          font-size: 3rem;
         }
       }
     }
