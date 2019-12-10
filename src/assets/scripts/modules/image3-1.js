@@ -1,10 +1,14 @@
 import { addClass } from './../utils/classes.js'
 
+Number.prototype.map = function(in_min, in_max, out_min, out_max) {
+ return ((this - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+}
+
 class Image3_1 {
   constructor(el, options = {}){
     this.container = document.body;
     this.itemsWrapper = el.querySelector('ul')
-    // setUp the effect: scene, items, textures
+    // setUp the effect: scene, items, textures, mouse
     if (!this.container || !this.itemsWrapper) return
     this.setup()
     this.initEffectShell().then(() => {
@@ -14,6 +18,8 @@ class Image3_1 {
     options.strength = options.strengh || 0.25
     this.options = options
     this.init()
+    // add events and interactions: texture, position, opacity distorsion
+    this.createEventListeners()
   }
 
   // create the scene
@@ -47,6 +53,9 @@ class Image3_1 {
       100
     )
     this.camera.position.set(0, 0, 3)
+
+    //
+    this.mouse = new THREE.Vector2()
 
     // animation loop
     this.renderer.setAnimationLoop(this.render.bind(this))
@@ -135,6 +144,7 @@ class Image3_1 {
     this.position = new THREE.Vector3(0,0,0)
     this.scale = new THREE.Vector3(1,1,1)
     this.geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32)
+    // geometry config
     this.uniforms = {
       uTexture: {
         // texture data
@@ -155,9 +165,17 @@ class Image3_1 {
        uniform vec2 uOffset;
        varying vec2 vUv;
 
+       #define M_PI 3.1415926535897932384626433832795
+
+       vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset) {
+         position.x = position.x + (sin(uv.y * M_PI) * offset.x);
+         position.y = position.y + (sin(uv.x * M_PI) * offset.y);
+         return position;
+       }
+
        void main() {
          vUv = uv;
-         vec3 newPosition = position;
+         vec3 newPosition = deformationCurve(position, uv, uOffset);
          gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
        }
      `,
@@ -168,7 +186,7 @@ class Image3_1 {
 
        void main() {
          vec3 color = texture2D(uTexture,vUv).rgb;
-         gl_FragColor = vec4(color,1.0);
+         gl_FragColor = vec4(color,uAlpha);
        }
      `,
      transparent: true
@@ -177,5 +195,153 @@ class Image3_1 {
     this.scene.add(this.plane)
   }
 
+  // create the events: update texture, position, opacity and distorsion
+  createEventListeners(){
+    // items
+    this.items.forEach((item, index) => {
+        item.element.addEventListener(
+          'mouseover',
+          this._onMouseOver.bind(this, index),
+          false
+        )
+    })
+    // container
+    this.container.addEventListener(
+      'mousemove',
+      this._onMouseMove.bind(this),
+      this
+    )
+    // itemsWrapper
+    this.itemsWrapper.addEventListener(
+      'mouseleave',
+      this._onMouseLeave.bind(this),
+      false
+    )
+  }
+
+  _onMouseLeave(event) {
+    this.isMouseOver = false
+    this.onMouseLeave(event)
+  }
+
+  _onMouseMove(event) {
+    // get normalized mouse position on viewport
+    this.mouse.x = (event.clientX / this.viewport.width) * 2 - 1
+    this.mouse.y = -(event.clientY / this.viewport.height) * 2 + 1
+
+    this.onMouseMove(event)
+  }
+
+  _onMouseOver(index, event) {
+    this.onMouseOver(index, event)
+  }
+
+  // update texture
+  onMouseOver(index, e) {
+    if (!this.isLoaded) return
+    this.onMouseEnter()
+    if (this.currentItem && this.currentItem.index === index) return
+    this.onTargetChange(index)
+  }
+
+  onTargetChange(index) {
+    // item target changed
+    this.currentItem = this.items[index]
+    if (!this.currentItem.texture) return
+    // update texture
+    this.uniforms.uTexture.value = this.currentItem.texture
+    // compute image ratio
+    let imageRatio = this.currentItem.img.naturalWidth / this.currentItem.img.naturalHeight
+    // scale plane to fit image dimensions
+    this.scale = new THREE.Vector3(imageRatio, 1, 1)
+    this.plane.scale.copy(this.scale)
+  }
+
+  // update position
+  // we need is the 3D coordinates in order to move our plane in the scene.
+  // we need to remap the mouse coordinate to the view size of our scene.
+  // for that:
+  // 1ª
+  // compute the plane's fit-to-screen dimensions by resolving AAS triangles
+  // using the camera position and camera FOV.
+
+  get viewSize() {
+    let distance = this.camera.position.z
+    let vFov = (this.camera.fov * Math.PI) / 180
+    let height = 2 * Math.tan(vFov / 2) * distance
+    let width = height * this.viewport.aspectRatio
+
+    return {
+      width,
+      height,
+      vFov
+    }
+  }
+
+  // 2ª
+  // remap the normalized mouse position with the scene view dimensions using a
+  // value mapping function.
+  // Number.prototype.map = function(in_min, in_max, out_min, out_max) {
+  //   return ((this - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+  // }
+
+  onMouseMove(event) {
+    // project mouse position to world coordinates
+    let x = this.mouse.x.map(
+      -1,
+      1,
+      -this.viewSize.width / 2,
+      this.viewSize.width / 2
+    )
+
+    let y = this.mouse.y.map(
+      -1,
+      1,
+      -this.viewSize.height / 2,
+      this.viewSize.height / 2
+    )
+
+    // update plane position
+    this.position = new THREE.Vector3(x, y, 0)
+
+    TweenLite.to(this.plane.position, 1, {
+      x: x,
+      y: y,
+      ease: Power4.easeOut,
+      onUpdate: this.onPositionUpdate.bind(this)
+    })
+  }
+
+
+  // fadding the opacity
+
+  onMouseEnter() {
+    if (!this.currentItem || !this.isMouseOver) {
+      this.isMouseOver = true
+      // show plane
+      TweenLite.to(this.uniforms.uAlpha, 0.5, {
+        value: 1,
+        ease: Power4.easeOut
+      })
+    }
+  }
+
+  onMouseLeave() {
+    TweenLite.to(this.uniforms.uAlpha, 0.5, {
+      value: 0,
+      ease: Power4.easeOut
+    })
+  }
+
+
+  // set the distorsion
+  onPositionUpdate() {
+    // compute offset
+    let offset = this.plane.position
+      .clone()
+      .sub(this.position) // velocity
+      .multiplyScalar(-this.options.strength)
+    this.uniforms.uOffset.value = offset
+  }
 
 } export default Image3_1
