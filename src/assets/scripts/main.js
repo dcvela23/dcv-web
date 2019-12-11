@@ -2,6 +2,7 @@ import navbar from './modules/navbar.js';
 import objectFitFallback from './modules/objectFitFallback';
 //
 import Image3_1 from './modules/image3-1.js';
+import Drag_1 from './modules/drag-1.js';
 //
 import { checkIE } from './utils/browsers.js'
 import { forEachPolyfill, arrayFromIE, startsWithPolyfill } from './utils/polyfill'
@@ -31,7 +32,15 @@ function initEvents() {
 
   //image3-1
   //
-  var Image3_1Init = new Image3_1(document.querySelector("#imag3-1"));
+  if (document.querySelector("#imag3-1")) {
+    var Image3_1Init = new Image3_1(document.querySelector("#imag3-1"));
+  }
+
+  //drag-1
+  //
+  if (document.querySelector("#drag-1")) {
+    var Drag_1Init = new Drag_1(document.querySelector("#drag-1"));
+  }
 
 }
 

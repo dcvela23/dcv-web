@@ -15,7 +15,7 @@ class objectFitFallback {
       const srcset = container.querySelector('img').getAttribute('srcset');
       const path = srcset.slice(0, srcset.indexOf(' '))
       container.style.backgroundImage = 'url(' + path + ')';
-      addClass(container, 'image--compat-object-fit'); 
+      addClass(container, 'image--compat-object-fit');
     }
   }
 } export default objectFitFallback

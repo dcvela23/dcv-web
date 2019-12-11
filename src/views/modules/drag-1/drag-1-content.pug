@@ -3,13 +3,18 @@ include ./../../mixins/image
 -var data = $texts.DRAG_1
 
 section.section.section--viewport#drag-1
-  .grid.grid--column.grid--jc-middle.grid--ai-middle.grid--full-height
-    .strip-outer
-      .strip-inner
-        .draggable
-        .strip
-          for item in data.items
-            .strip__item
-              +image(item.path, 'cover')
-
-        
+  .strip-outer
+    .strip-inner
+      .draggable
+      .strip
+        for item in data.items
+          .strip__item
+            +image(item.path, 'cover')
+      .strip-cover
+        p.blueDark.headline-medium= data.title
+        p.blueDark.text-medium= data.subtitle
+  .cursor
+    .cursor__inner.cursor__inner--circle
+      .cursor__side.cursor__side--left
+      .cursor__side.cursor__side--right
+      

@@ -30,6 +30,8 @@
 		]
 	},
 	"DRAG_1": {
+		"title": "memories",
+		"subtitle": "in 2019",
 		"items": [
 			{
 				"path" : "/assets/images/image3-1/image1.jpg"

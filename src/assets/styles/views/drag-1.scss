@@ -1,0 +1,106 @@
+#drag-1 {
+  position: relative;
+
+  .draggable {
+    @include pos(absolute, 50%, auto, auto, 0);
+    cursor: grab;
+    height: 50vh;
+    transform: translateY(-50%);
+    width: 100%;
+    z-index: 2;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  .strip-cover {
+    @include pos(absolute, 50%, auto, auto, 0);
+    opacity: 0;
+    transition: all .2s linear;
+    transform: translateY(-50%);
+    width: 100vw;
+    z-index: 1;
+
+    p {
+      color: purple;
+      font-size: 5rem;
+      line-height: 5rem;
+      text-align: center;
+    }
+  }
+
+  .strip-outer {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: none;
+    z-index: 0;
+
+    .strip-inner {
+      @include pos(absolute, 0, auto, auto, 0);
+      height: 100%;
+
+      .strip {
+        @include pos(relative, 50%, auto, auto, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-50%);
+
+        &__item {
+          picture {
+            width: 20vw;
+            height: 35vh;
+          }
+
+          &:nth-child(odd) {
+            picture {
+              height: 45vh;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .cursor {
+    display: none;
+
+    @media (any-pointer: fine) {
+      display: block;
+
+      &__inner {
+        z-index: 99999;
+        pointer-events: none;
+        @include pos(absolute, 0, auto, auto, 0);
+        mix-blend-mode: difference;
+        border-radius: 50%;
+
+        &--circle {
+          @include size(25px, 25px);
+          border: 1px solid $white;
+        }
+
+        &__side {
+          @include pos(absolute, 50%, auto, auto, auto);
+          @include size(5px, 1px);
+          opacity: 0;
+          background: $white;
+
+          &--left {
+            right: calc(100% + 5px);
+          }
+
+          &--right {
+            left: calc(100% + 5px);
+          }
+        }
+      }
+    }
+  }
+}
