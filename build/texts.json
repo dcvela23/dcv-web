@@ -28,5 +28,54 @@
 				"path" : "/assets/images/image3-1/image5.jpg"
 			}
 		]
+	},
+	"DRAG_1": {
+		"items": [
+			{
+				"path" : "/assets/images/image3-1/image1.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image2.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image3.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image4.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image5.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image1.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image2.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image3.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image4.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image5.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image1.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image2.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image3.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image4.jpg"
+			},
+			{
+				"path" : "/assets/images/image3-1/image5.jpg"
+			}
+		]
 	}
 }
