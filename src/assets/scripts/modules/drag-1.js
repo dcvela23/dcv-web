@@ -39,7 +39,7 @@ window.addEventListener('mousemove', ev => mousepos = getMousePos(ev))
 class Drag_1 {
   constructor(el){
     this.strip = el.querySelector('.strip')
-    this.items = []
+    this.items = el.querySelectorAll('.strip__item')
     this.cover = el.querySelector('.strip-cover')
     this.draggable = el.querySelector('.draggable')
     this.draggableWidth = this.draggable.offsetWidth
@@ -68,8 +68,19 @@ class Drag_1 {
         this.renderedStyles[key].previous = MathUtils.lerp(this.renderedStyles[key].previous, this.renderedStyles[key].current, 0.1)
       }
 
-      // change values
+      // link strip to drag move
       TweenMax.set(this.strip, { x: this.renderedStyles.position.previous })
+      // link elemts to new values on drag
+
+      this.items.forEach((item) => {
+        let itemImg = item.querySelector('img')
+
+        TweenMax.set(item, { scale: this.renderedStyles.scale.previous, opacity: this.renderedStyles.opacity.previous})
+        TweenMax.set(itemImg, { scale: this.renderedStyles.imgScale.previous})
+      })
+
+      TweenMax.set(this.cover, { scale: this.renderedStyles.coverScale.previous, opacity: this.renderedStyles.coverOpacity.previous})
+
 
       if ( !this.renderId ) {
         this.renderId = requestAnimationFrame(() => this.render())
@@ -80,6 +91,10 @@ class Drag_1 {
   }
 
   initEvents() {
+    this.onDragStart = () => {
+        this.elsOnDragStart()
+    }
+
     this.onDragMove = (event, pointer, moveVector) => {
       this.stripOnDragMove()
       mousepos = getMousePos(event)
@@ -87,12 +102,27 @@ class Drag_1 {
 
     this.onDragEnd = () => {
       this.stripOnDragEnd()
+      this.elsOnDragEnd()
     }
 
+    this.draggie.on('pointerDown', this.onDragStart)
     this.draggie.on('dragMove', this.onDragMove)
     this.draggie.on('pointerUp', this.onDragEnd)
+
+    // hanlde draggie on resize
+    window.addEventListener('resize', () => {
+      this.maxDrag = this.draggableWidth < winsize.width ? 0 : this.draggableWidth - winsize.width;
+      if ( Math.abs(this.dragPosition) + winsize.width > this.draggableWidth ) {
+          const diff = Math.abs(this.dragPosition) + winsize.width - this.draggableWidth;
+          // reset dragPosition
+          this.dragPosition = this.dragPosition+diff;
+          this.draggie.setPosition(this.dragPosition, this.draggie.position.y);
+      }
+    });
+
   }
 
+  // handle drag move
   stripOnDragMove() {
     // The possible range for the drag is draggie.position.x = [-maxDrag,0 ]
     if (this.draggie.position.x >= 0) {
@@ -118,5 +148,22 @@ class Drag_1 {
     this.renderedStyles.position.current = this.dragPosition
   }
 
+  // handle elements animation on drag events
+
+  elsOnDragStart() {
+    this.renderedStyles.scale.current = 0.8
+    this.renderedStyles.opacity.current = 0.3
+    this.renderedStyles.imgScale.current = 1.6
+    this.renderedStyles.coverScale.current = 1
+    this.renderedStyles.coverOpacity.current = 1
+  }
+
+  elsOnDragEnd() {
+    this.renderedStyles.scale.current = 1
+    this.renderedStyles.opacity.current = 1
+    this.renderedStyles.imgScale.current = 1
+    this.renderedStyles.coverScale.current = 0.75
+    this.renderedStyles.coverOpacity.current = 0
+  }
 
 } export default Drag_1
