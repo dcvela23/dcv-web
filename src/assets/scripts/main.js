@@ -2,6 +2,7 @@ import navbar from './modules/navbar.js';
 import objectFitFallback from './modules/objectFitFallback';
 //
 import Image3_1 from './modules/image3-1.js';
+import Image3_2 from './modules/image3-2.js';
 import Drag_1 from './modules/drag-1.js';
 //
 import { checkIE } from './utils/browsers.js'
@@ -34,6 +35,12 @@ function initEvents() {
   //
   if (document.querySelector("#imag3-1")) {
     var Image3_1Init = new Image3_1(document.querySelector("#imag3-1"));
+  }
+
+  //image3-2
+  //
+  if (document.querySelector("#imag3-2")) {
+    var Image3_2Init = new Image3_2(document.querySelector("#imag3-2"));
   }
 
   //drag-1

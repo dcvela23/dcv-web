@@ -1,31 +1,26 @@
 
-#imag3-1 {
-  > .grid {
-    position: relative;
-    z-index: 1;
+#imag3-2 {
+  #step1 {
+    article {
+      padding-top: 35vw;
+      width: 25vw;
+      background: $purple;
+      position: relative;
 
-    ul {
-      li {
-        + li {
-          margin-top: 8vh;
-        }
+      figure {
+        @include pos(absolute, 0, auto, auto, 0);
+        @include size(100%, 100%);
 
-        picture {
-          display: none;
-        }
-
-        p {
-          text-align: center;
-          font-size: 3rem;
+        img {
+          @include size(100%, 100%);
         }
       }
     }
-  }
 
-
-  canvas {
-    @include pos(absolute, 0, auto, auto, 0);
-    z-index: 0;
-    pointer-events: none;
+    canvas {
+      @include pos(fixed, 0, auto, auto, 0);
+      @include size(100%, 100vh);
+      z-index: 9;
+    }
   }
 }

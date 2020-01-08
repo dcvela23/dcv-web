@@ -79,5 +79,11 @@
 				"path" : "/assets/images/image3-1/image5.jpg"
 			}
 		]
+	},
+	"IMAG3_2": {
+		"step1": {
+			"src" : "/assets/images/image3-1/image1.jpg",
+			"hover" : "/assets/images/image3-1/image3.jpg"
+		}
 	}
 }
